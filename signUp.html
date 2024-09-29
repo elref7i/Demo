@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+  <link rel="stylesheet" href="/CSS/all.min.css">
+  <link rel="stylesheet" href="/CSS/bootstrap.min.css">
+  <!-- *==> Link Bootstrap -->
+  <link rel="stylesheet" href="/CSS/style.css">
+  <!-- *==> Link Stylesheet -->
+</head>
+
+<body>
+  <main class="bg-prime  | py-5  min-vh-100 d-flex justify-content-center align-items-start">
+    <section class="bg-prime | shadow-lg p-5 w-50">
+      <div class="container">
+        <h1 class="text-center mb-4 text-prime">Smart Login System</h1>
+        <form>
+          <input type="text" class="form-control bg-transparent mb-3 text-white" placeholder="Enter your name"
+            id="name-up" oninput="validtion(nameUpInput, nameRgx) ">
+          <input type="email" class="form-control bg-transparent mb-3 text-white" placeholder="Enter your email"
+            id="email-up" oninput="validtion(emailUpInput, emailRgx)">
+          <input type="password" class="form-control bg-transparent mb-4 text-white" placeholder="Enter your password"
+            id="pass-up" oninput="validtion(passUpInput, passwordRgx) ">
+          <button type="button" class="btn btn-outline-info w-100 mb-3" id="sign-up" onclick="addUser()">Sign
+            Up</button>
+          <p class="text-white text-center">You have an account? <a class="link-sign-uP | text-white fw-bold"
+              href="signin.html">Signin</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="/JS/bootstrap.bundle.js"></script>
+  <script src="/JS/index.js"></script>
+</body>
+
+</html>

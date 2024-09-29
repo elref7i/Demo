@@ -1,0 +1,22 @@
+:root {
+  --bg-prime: #24353f;
+  --text-prime: #17a2b8;
+}
+a {
+  text-decoration: none;
+}
+
+.bg-prime {
+  background-color: var(--bg-prime);
+}
+.text-prime {
+  color: var(--text-prime);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ***  Style Home Page */
+.logout {
+  width: 100%;
+}
