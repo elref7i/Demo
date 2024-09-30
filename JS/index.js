@@ -29,6 +29,8 @@ let errorEmail = document.createElement('p');
 errorEmail.textContent = 'plase enter anothrt email';
 errorEmail.classList.add('text-danger');
 
+let errorValidtionSignIn = document.createElement('p');
+errorValidtionSignIn.classList.add('text-danger', 'text-center', 'fs-5');
 welcomeMessage.textContent = `Welcome ${localStorage.getItem(
   'nameUserInHome'
 )}`;
@@ -55,6 +57,7 @@ function addUser() {
     console.log(allData.indexOf(dataUser));
   }
 }
+
 function clearInput() {
   nameUpInput.classList.remove('is-valid');
   emailUpInput.classList.remove('is-valid');
@@ -62,7 +65,7 @@ function clearInput() {
   nameUpInput.value = '';
   emailUpInput.value = '';
   passUpInput.value = '';
-  // errorEmail.classList.add('d-none');
+  errorEmail.classList.add('d-none');
 }
 function validtion(ele, rgx) {
   if (rgx.test(ele.value)) {
@@ -89,18 +92,23 @@ function chekedTOFindEmail(currentInputValue) {
   return true;
 }
 function checkedTOValidEmail() {
-  for (let i = 0; i < allData.length; i++) {
-    if (
-      emailInInput.value === allData[i].email &&
-      passInInput.value === allData[i].password
-    ) {
-      login.setAttribute('href', '/home.html');
-      localStorage.setItem('nameUserInHome', allData[i].name);
-    } else {
-      console.log('flase');
+  passInInput.after(errorValidtionSignIn);
+  if (emailInInput.value === '' && passInInput.value === '') {
+    errorValidtionSignIn.textContent = 'All inputs is required';
+  } else {
+    for (let i = 0; i < allData.length; i++) {
+      if (
+        emailInInput.value === allData[i].email &&
+        passInInput.value === allData[i].password
+      ) {
+        login.setAttribute('href', '/home.html');
+        errorValidtionSignIn.textContent = '';
+        localStorage.setItem('nameUserInHome', allData[i].name);
+      } else {
+        errorValidtionSignIn.textContent = 'incorrect email or password';
+      }
     }
   }
-  // return false;
 }
 // *Event D#dd3333
 
