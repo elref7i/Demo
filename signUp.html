@@ -21,7 +21,7 @@
           <input type="text" class="form-control bg-transparent mb-3 text-white" placeholder="Enter your name"
             id="name-up" oninput="validtion(nameUpInput, nameRgx) ">
           <input type="email" class="form-control bg-transparent mb-3 text-white" placeholder="Enter your email"
-            id="email-up" oninput="validtion(emailUpInput, emailRgx)">
+            id="email-up" oninput="validtion(emailUpInput, emailRgx) ,chekedTOFindEmail(emailUpInput)">
           <input type="password" class="form-control bg-transparent mb-4 text-white" placeholder="Enter your password"
             id="pass-up" oninput="validtion(passUpInput, passwordRgx)">
           <button type="button" class="btn btn-outline-info w-100 mb-3" id="sign-up" onclick="addUser()">Sign

@@ -12,6 +12,9 @@ let signUp = document.querySelector('#sign-up');
 let emailInInput = document.querySelector('#email-in');
 let passInInput = document.querySelector('#pass-in');
 let login = document.querySelector('#login');
+//^ =====> Home ELement
+let welcomeMessage = document.querySelector('.welcome-message');
+
 //* APP Variabels
 
 let nameRgx = /^[A-Za-z][a-z]{3,}([1-9][1-9])?$/;
@@ -19,10 +22,18 @@ let emailRgx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let passwordRgx =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 
+//********************* //
+let allData = JSON.parse(localStorage.getItem('dataStorgeUser')) || [];
+
 let errorEmail = document.createElement('p');
 errorEmail.textContent = 'plase enter anothrt email';
 errorEmail.classList.add('text-danger');
-let allData = JSON.parse(localStorage.getItem('dataStorgeUser')) || [];
+
+welcomeMessage.textContent = `Welcome ${localStorage.getItem(
+  'nameUserInHome'
+)}`;
+
+//********************* //
 
 //* Function
 
@@ -31,7 +42,7 @@ function addUser() {
     validtion(nameUpInput, nameRgx) &&
     validtion(emailUpInput, emailRgx) &&
     validtion(passUpInput, passwordRgx) &&
-    chekedTOFindEmail()
+    chekedTOFindEmail(emailUpInput)
   ) {
     let dataUser = {
       name: nameUpInput.value,
@@ -41,6 +52,7 @@ function addUser() {
     allData.push(dataUser);
     localStorage.setItem('dataStorgeUser', JSON.stringify(allData));
     clearInput();
+    console.log(allData.indexOf(dataUser));
   }
 }
 function clearInput() {
@@ -50,7 +62,7 @@ function clearInput() {
   nameUpInput.value = '';
   emailUpInput.value = '';
   passUpInput.value = '';
-  errorEmail.classList.add('d-none');
+  // errorEmail.classList.add('d-none');
 }
 function validtion(ele, rgx) {
   if (rgx.test(ele.value)) {
@@ -63,32 +75,34 @@ function validtion(ele, rgx) {
     return false;
   }
 }
-
-function chekedTOFindEmail() {
+// *** checked the email find or not find
+function chekedTOFindEmail(currentInputValue) {
+  if (allData.length === 0) return true;
   for (let i = 0; i < allData.length; i++) {
-    if (emailUpInput.value === allData[i].email) {
-      emailUpInput.value = '';
-      emailUpInput.after(errorEmail);
-      emailUpInput.classList.add('is-invalid');
+    if (currentInputValue.value === allData[i].email) {
+      currentInputValue.value = '';
+      currentInputValue.after(errorEmail);
+      currentInputValue.classList.add('is-invalid');
       return false;
-    } else {
-      return true;
     }
   }
+  return true;
 }
-
-// chekedTOFindEmail();
-// function checkToFindUser() {
-//   for (let i = 0; i < allData.length; i++) {
-//     console.log(allData[i].email);
-//     // if (allData[i].email === emailInInput.vlaue) {
-//     //   console.log(true);
-//     // }
-//     // console.log(false);
-//   }
-// }
-
-// *Event
+function checkedTOValidEmail() {
+  for (let i = 0; i < allData.length; i++) {
+    if (
+      emailInInput.value === allData[i].email &&
+      passInInput.value === allData[i].password
+    ) {
+      login.setAttribute('href', '/home.html');
+      localStorage.setItem('nameUserInHome', allData[i].name);
+    } else {
+      console.log('flase');
+    }
+  }
+  // return false;
+}
+// *Event D#dd3333
 
 /* signUp.addEventListener('click', addUser);
 emailUpInput.addEventListener('input', function () {
