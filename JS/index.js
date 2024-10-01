@@ -29,8 +29,8 @@ let errorEmail = document.createElement('p');
 errorEmail.textContent = 'plase enter anothrt email';
 errorEmail.classList.add('text-danger');
 
-let errorValidtionSignIn = document.createElement('p');
-errorValidtionSignIn.classList.add('text-danger', 'text-center', 'fs-5');
+let errorValidtionInputEmpty = document.createElement('p');
+errorValidtionInputEmpty.classList.add('text-danger', 'text-center', 'fs-5');
 welcomeMessage.textContent = `Welcome ${localStorage.getItem(
   'nameUserInHome'
 )}`;
@@ -66,8 +66,16 @@ function clearInput() {
   emailUpInput.value = '';
   passUpInput.value = '';
   errorEmail.classList.add('d-none');
+  errorValidtionInputEmpty.textContent = '';
 }
+function checkEmptyInput() {}
 function validtion(ele, rgx) {
+  if (ele.value === '') {
+    passUpInput.after(errorValidtionInputEmpty);
+    errorValidtionInputEmpty.textContent = 'All inputs is required';
+  } else {
+    errorValidtionInputEmpty.textContent = '';
+  }
   if (rgx.test(ele.value)) {
     ele.classList.add('is-valid');
     ele.classList.remove('is-invalid');
@@ -92,22 +100,22 @@ function chekedTOFindEmail(currentInputValue) {
   return true;
 }
 function checkedTOValidEmail() {
-  passInInput.after(errorValidtionSignIn);
-  if (emailInInput.value === '' && passInInput.value === '') {
-    errorValidtionSignIn.textContent = 'All inputs is required';
+  passInInput.after(errorValidtionInputEmpty);
+  if (emailInInput.value === '' || passInInput.value === '') {
+    errorValidtionInputEmpty.textContent = 'All inputs is required';
   } else {
     for (let i = 0; i < allData.length; i++) {
       if (
         emailInInput.value === allData[i].email &&
         passInInput.value === allData[i].password
       ) {
+        errorValidtionInputEmpty.textContent = '';
         login.setAttribute('href', '/home.html');
-        errorValidtionSignIn.textContent = '';
         localStorage.setItem('nameUserInHome', allData[i].name);
-      } else {
-        errorValidtionSignIn.textContent = 'incorrect email or password';
+        return true;
       }
     }
+    errorValidtionInputEmpty.textContent = 'incorrect email or password';
   }
 }
 // *Event D#dd3333
