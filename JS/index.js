@@ -119,27 +119,3 @@ function checkedTOValidEmail() {
   }
 }
 // *Event D#dd3333
-
-/* signUp.addEventListener('click', addUser);
-emailUpInput.addEventListener('input', function () {
-  validtion(emailUpInput, emailRgx);
-});
-nameUpInput.addEventListener('input', function () {
-  validtion(nameUpInput, nameRgx);
-});
-passUpInput.addEventListener('input', function () {
-  validtion(passUpInput, passwordRgx);
-});
-
-login.addEventListener('click', function () {
-  console.log(emailInInput.value);
-}); 
-
-console.log(allData);
-function checkedUser() {
-  for (let i = 0; i < allData.length; i++) {
-    console.log(allData[i]);
-  }
-}
-login.addEventListener('click', checkedUser);
- */
